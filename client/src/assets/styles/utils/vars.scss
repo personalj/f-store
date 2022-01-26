@@ -1,0 +1,17 @@
+$baseWhite: #ffffff;
+$baseBlack: #19191d;
+$baseBlue: #04A6C5;
+$baseGray: #ededf0;
+$baseOrange: #fb8200;
+$lightGray: #d3d3d3;
+$baseRed: #ff0000;
+$baseGreen: #99aa33;
+
+$roboto: "Roboto";
+$offset: 1rem;
+
+$defaultRadius: 8px;
+
+@mixin transition {
+  transition: all 0.3s ease;
+}

@@ -1,0 +1,148 @@
+@import "utils/fonts";
+@import "utils/vars";
+
+body, html {
+  overflow: hidden;
+  overflow-y: auto;
+}
+body {
+  font-family: $roboto;
+  font-weight: normal;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: $baseBlack;
+  margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+ul, ol, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin: 0;
+}
+.bold {
+  font-weight: bold;
+}
+a {
+  color: $baseBlack;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+textarea {
+  resize: none;
+}
+section {
+  position: relative;
+}
+input,
+select,
+button,
+textarea {
+  outline: none;
+  font-family: $roboto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input {
+  border: 0;
+  padding: 0;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+img {
+  max-width: 100%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.content {
+  flex: 1 0 auto;
+}
+.container {
+  max-width: 75rem;
+  padding-right: $offset;
+  padding-left: $offset;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.container-fluid {
+  padding-right: $offset;
+  padding-left: $offset;
+}
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.default-btn {
+  border-radius: $defaultRadius;
+  overflow: hidden;
+  width: 100%;
+  max-width: 16.25rem;
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $baseGreen;
+  @include transition;
+  span {
+    color: $baseGreen;
+  }
+  &:hover {
+    background: $baseGreen;
+    span {
+      color: $baseWhite;
+    }
+  }
+  &.warning {
+    border-color: $baseRed;
+    span {
+      color: $baseRed;
+    }
+    &:hover {
+      background: $baseRed;
+      span {
+        color: $baseWhite;
+      }
+    }
+  }
+}

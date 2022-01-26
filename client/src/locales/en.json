@@ -1,0 +1,12 @@
+{
+    "noProducts": "No products",
+    "noOrders": "No orders",
+    "backCatalog": "Back to Catalog",
+    "addCart": "Add to Cart",
+    "qty": "Qty",
+    "delete": "Delete",
+    "purchase": "Purchase",
+    "emptyCart": "No products in cart...",
+    "addedToCart": "Product added to cart",
+    "deleteCart": "Deleted from cart"
+}
