@@ -98,10 +98,6 @@ export default class CartItems extends Vue {
   getProduct(id: number): void {
     this.$router.push(`/product/${id}`);
   }
-
-  beforeDestroy(): void {
-    cartModule.clearError()
-  }
 }
 </script>
 

@@ -62,6 +62,9 @@ export default class ProductItem extends Vue {
     this.$router.push(`/product/${id}`);
   }
 
+  flag: boolean = true;
+
+
   addToCart(product: ProductInterface): void {
     let item = product;
     item = {
@@ -69,8 +72,13 @@ export default class ProductItem extends Vue {
       quantity: 1,
     };
     cartModule.setToCart(item);
-    const msg = this.$t('addedToCart') as string
-    this.$toast.open(msg)
+
+    if (this.flag) {
+      const msg = this.$t('addedToCart') as string;
+      this.$toast.open(msg)
+    }
+    this.flag = false;
+    setTimeout(() => this.flag = true, 2000);
   }
 }
 </script>

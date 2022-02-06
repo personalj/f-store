@@ -97,6 +97,8 @@ import Loader from "@/components/common/Loader.vue";
 export default class Product extends Vue {
   isLoading: boolean = true;
 
+  flag: boolean = false;
+
   productQuantity: number = 1;
 
   get product(): ProductInterface {
@@ -110,8 +112,12 @@ export default class Product extends Vue {
       quantity: +this.productQuantity,
     };
     cartModule.setToCart(item);
-    const msg = this.$t('addedToCart') as string
-    this.$toast.open(msg)
+    if (this.flag) {
+      const msg = this.$t('addedToCart') as string;
+      this.$toast.open(msg)
+    }
+    this.flag = false;
+    setTimeout(() => this.flag = true, 2000);
   }
 
   decrementQuantity():void {

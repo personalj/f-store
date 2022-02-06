@@ -1,8 +1,6 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../index')
 
-const Flower = require('../database/models/flower.model')
-
 const Color = sequelize.define('Color', {
     id: {
         type: DataTypes.INTEGER,

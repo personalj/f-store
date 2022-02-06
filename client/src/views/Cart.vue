@@ -103,6 +103,10 @@ export default class Cart extends Vue {
   decrement(index: number): void {
     cartModule.decrement(index);
   }
+
+  beforeDestroy(): void {
+    cartModule.clearError()
+  }
 }
 </script>
 
