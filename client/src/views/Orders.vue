@@ -13,7 +13,7 @@
       >
         {{ $t('backCatalog') }}
       </router-link>
-      <h1 class="orders__title">Orders</h1>
+      <h1 class="orders__title">{{ $t('orders') }}</h1>
       <div class="orders__main">
         <div
           v-if="ordersList.length"
@@ -41,7 +41,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import Orders from "@/components/orders/OrdersList.vue";
 import ordersModule from "@/store/modules/orders";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 import Loader from "@/components/common/Loader.vue"
 
 @Component({
@@ -63,7 +63,9 @@ export default class OrdersInfo extends Vue {
 
   async mounted(): Promise<void> {
     try {
-      await this.fetchOrders();
+      if (!this.ordersList.length) {
+        await this.fetchOrders();
+      }
       this.isLoading = false;
     } catch (e) {
       console.log(e);

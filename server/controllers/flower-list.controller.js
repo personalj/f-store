@@ -1,7 +1,8 @@
-const flowersMock = require('../mocks/flowers.mock')
+const Flower = require('../database/models/flower.model')
 
-function flowersListController(req, res) {
-    res.json(flowersMock)
+async function flowersListController(req, res) {
+    const result = await Flower.findAll()
+    res.json(result)
 }
 
 module.exports = flowersListController

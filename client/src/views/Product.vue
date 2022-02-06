@@ -20,24 +20,26 @@
             {{ product.title || '' }}
           </div>
           <div class="product__price">{{ product.price }} USD</div>
-          <div class="product__rate-container">
+          <div
+            class="product__rate-container"
+          >
             <div class="product__rate-wrap">
               <div class="product__rate-stars">
                 <star-rating
-                    v-model="product.rating.rate"
-                    :read-only=true
-                    :increment=0.1
-                    :star-size=20
-                    :show-rating=false
+                  v-model="product.rate"
+                  :read-only=true
+                  :increment=0.1
+                  :star-size=20
+                  :show-rating=false
                 />
               </div>
               <div class="product__rate">
-                {{ product.rating.rate }}
+                {{ product.rate }}
               </div>
             </div>
-            <div class="product__rate-amount">
-              ({{ product.rating.count }})
-            </div>
+<!--            <div class="product__rate-amount">-->
+<!--              ({{ product.rating.count }})-->
+<!--            </div>-->
           </div>
           <div class="product__description">
             {{ product.description }}
@@ -83,7 +85,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import productsModule from "@/store/modules/products";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 import cartModule from "@/store/modules/cart";
 import Loader from "@/components/common/Loader.vue";
 

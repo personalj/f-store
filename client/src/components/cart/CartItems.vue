@@ -1,6 +1,9 @@
 <template>
   <div class="cart__item">
-    <div class="cart__item-img">
+    <div
+        class="cart__item-img"
+        @click="getProduct(cartItem.id)"
+    >
       <img
         v-if="cartItem.image"
         :src="cartItem.image"
@@ -8,7 +11,10 @@
     </div>
     <div class="cart__item-info-wrap">
       <div class="cart__item-info">
-        <div class="cart__item-title">
+        <div
+          class="cart__item-title"
+          @click="getProduct(cartItem.id)"
+        >
           {{ cartItem.title || '' }}
         </div>
         <div class="cart__item-price">
@@ -16,7 +22,24 @@
         </div>
       </div>
       <div>
-        <p>{{ $t('qty') }}:</p>
+        <div
+          v-if="orderError.length"
+        >
+          <div
+            v-for="err in orderError"
+            :key="err.product_id"
+          >
+            <div
+              v-if="err.product_id === cartItem.id"
+              class="cart__error"
+            >
+              {{ $t('availableAmount') }} - {{ err.available_amount }}
+            </div>
+          </div>
+        </div>
+        <p>
+          {{ $t('qty') }}:
+        </p>
         <div class="cart__item-quantity">
           <button
             type="button"
@@ -48,11 +71,17 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
+import CartOrderErrorInterface from "@/interfaces/cartOrderError";
+import cartModule from "@/store/modules/cart";
 
 @Component
 export default class CartItems extends Vue {
   @Prop({ type: Object, default: {} }) cartItem!: ProductInterface;
+
+  get orderError(): CartOrderErrorInterface[] {
+    return cartModule.orderErrorInfo;
+  }
 
   deleteFromCart(): void {
     this.$emit("deleteFromCart");
@@ -65,12 +94,25 @@ export default class CartItems extends Vue {
   decrementItem(): void {
     this.$emit("decrement");
   }
+
+  getProduct(id: number): void {
+    this.$router.push(`/product/${id}`);
+  }
+
+  beforeDestroy(): void {
+    cartModule.clearError()
+  }
 }
 </script>
 
 <style lang="scss">
   @import '@/assets/styles/utils/vars.scss';
   .cart {
+    &__error {
+      margin-bottom: $offset / 2;
+      color: $baseRed;
+      font-weight: bold;
+    }
     &__item {
       padding: $offset;
       margin-bottom: $offset;
@@ -85,6 +127,11 @@ export default class CartItems extends Vue {
         width: 240px;
         height: 240px;
         position: relative;
+        cursor: pointer;
+        transition: all .3s ease;
+        &:hover {
+          transform: scale(.9);
+        }
         @media (max-width: 576px) {
           margin: 0 auto;
         }
@@ -122,6 +169,11 @@ export default class CartItems extends Vue {
       &-title {
         font-size: 1rem;
         margin-bottom: $offset;
+        cursor: pointer;
+        transition: all .3s ease;
+        &:hover {
+          color: $baseGreen;
+        }
       }
       &-price {
         font-weight: bold;

@@ -7,8 +7,9 @@ import {
 } from "vuex-module-decorators";
 import Vue from 'vue';
 import store from "@/store";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 import CartOrderInterface from "@/interfaces/cartOrder";
+import CartOrderErrorInterface from "@/interfaces/cartOrderError";
 import { http } from "@/services/http";
 
 @Module({
@@ -20,6 +21,7 @@ import { http } from "@/services/http";
 class CartModule extends VuexModule {
   cartList: ProductInterface[] =
   localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart") || '') : [];
+  orderError: CartOrderErrorInterface[] = [];
 
   @Mutation
   setToCart(product: ProductInterface): void {
@@ -58,6 +60,16 @@ class CartModule extends VuexModule {
     localStorage.removeItem("cart");
   }
 
+  @Mutation
+  setOrderError(data: CartOrderErrorInterface[]): void {
+    this.orderError = data;
+  }
+
+  @Mutation
+  clearError(): void {
+    this.orderError = []
+  }
+
   @Action
   async order(payload: CartOrderInterface[]): Promise<void> {
     const {data} =  await http.post("orders", payload);
@@ -68,8 +80,9 @@ class CartModule extends VuexModule {
         type: 'success'
       })
     }else {
+      this.setOrderError(data.data)
       Vue.$toast.open({
-        message:  `${data.msg} Available amount ${data.available_amount}`,
+        message: `error`,
         type: 'error'
       })
     }
@@ -87,6 +100,10 @@ class CartModule extends VuexModule {
       }
       return 0
     },  0);
+  }
+
+  get orderErrorInfo() {
+    return this.orderError;
   }
 }
 

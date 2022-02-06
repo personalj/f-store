@@ -85,7 +85,7 @@ export default class AppHeader extends Vue {
           bottom: -10%;
           right: -10%;
           position: absolute;
-          width: 1rem;
+          min-width: 1.1rem;
           height: 1rem;
           border-radius: 50%;
           text-align: center;

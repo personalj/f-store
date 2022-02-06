@@ -3,15 +3,14 @@ interface ProductInterface {
     title: string;
     description: string;
     price: number;
-    amount: number;
+    color_id: number;
+    quantity: number;
+    // rating: {
+    //     rate: number;
+    //     count: number;
+    // }
+    rate: number,
     image: string;
-    color: string;
-    categories: string[];
-    rating: {
-        rate: number;
-        count: number;
-    }
-    quantity?: number | undefined;
   }
 
 export default ProductInterface;

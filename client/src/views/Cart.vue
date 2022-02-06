@@ -48,7 +48,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import cartModule from "@/store/modules/cart";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 import CartItem from "@/components/cart/CartItems.vue";
 
 @Component({
@@ -80,7 +80,7 @@ export default class Cart extends Vue {
   order(): void {
     const data = this.cart.map(item => {
       return {
-        id: item.id,
+        product_id: item.id,
         quantity: item.quantity
       }
     })
@@ -109,6 +109,7 @@ export default class Cart extends Vue {
 <style lang="scss">
   @import '@/assets/styles/utils/vars.scss';
   .cart {
+    padding-bottom: $offset * 2;
     &__back, &__info {
       margin-bottom: $offset;
     }

@@ -19,10 +19,12 @@
         <div class="product__price">
           {{ product.price }} USD
         </div>
-        <div class="product__rate-wrap">
+        <div
+          class="product__rate-wrap"
+        >
           <div class="product__rate-stars">
             <star-rating
-              v-model="product.rating.rate"
+              v-model="product.rate"
               :read-only=true
               :increment=0.1
               :star-size=18
@@ -30,7 +32,7 @@
             />
           </div>
           <div class="product__rate">
-            {{ product.rating.rate }}
+            {{ product.rate }}
           </div>
         </div>
         <button
@@ -49,7 +51,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 import cartModule from "@/store/modules/cart";
 
 @Component
@@ -84,7 +86,7 @@ export default class ProductItem extends Vue {
     &__rate {
       font-size: .875rem;
       margin-left: $offset / 2;
-      margin-top: 0.4rem;
+      //margin-top: 0.4rem;
       &-wrap {
         margin-bottom: $offset;
         display: flex;

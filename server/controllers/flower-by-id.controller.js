@@ -1,11 +1,9 @@
 const { geFlowerById } = require('../services/flower.services')
 
-function flowerByIdController(req , res) {
-    const id = req.params.id
+async function flowerByIdController(req , res) {
+    const result = await geFlowerById(Number(req.params.id))
 
-    res.json(
-        geFlowerById(+id)
-    )
+    res.json(result)
 }
 
 module.exports = flowerByIdController

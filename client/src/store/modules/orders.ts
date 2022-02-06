@@ -6,9 +6,9 @@ import {
     Mutation,
   } from "vuex-module-decorators";
   import store from "@/store";
-  import ProductInterface from "@/interfaces/products";
+  import ProductInterface from "@/interfaces/product";
   import { http } from "@/services/http";
-  
+
   @Module({
     dynamic: true,
     namespaced: true,
@@ -17,11 +17,10 @@ import {
   })
   class OrdersModule extends VuexModule {
     ordersList: ProductInterface[] = []
-   
-  
+
     @Mutation
     setOrders(orders: ProductInterface[]): void {
-      this.ordersList = orders; 
+      this.ordersList = orders;
     }
 
     @Action({ commit: "setOrders" })
@@ -33,11 +32,11 @@ import {
       });
       return data;
     }
-  
+
     get orders() {
       return this.ordersList;
     }
-  
+
   }
-  
+
   export default getModule(OrdersModule);

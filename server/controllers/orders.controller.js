@@ -1,11 +1,9 @@
 const { checkOrder } = require('../services/order.services')
 
-function ordersController(req , res) {
-    const data = req.body
+async function ordersController(req , res) {
+    const result = await checkOrder(req.body)
 
-    res.json(
-        checkOrder(data)
-    )
+    res.json(result)
 }
 
 module.exports = ordersController

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="order" class="order">
+  <div v-if="order" class="order order-wrap">
     <div class="product">
       <div class="product__inner">
         <div class="product__img-wrap">
@@ -23,7 +23,7 @@
           <div class="product__rate-wrap">
             <div class="product__rate-stars">
               <star-rating
-                v-model="order.rating.rate"
+                v-model="order.rate"
                 :read-only=true
                 :increment=0.1
                 :star-size=18
@@ -31,7 +31,7 @@
               />
             </div>
             <div class="product__rate">
-              {{ order.rating.rate }}
+              {{ order.rate }}
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 
 @Component
 export default class OrderItem extends Vue {
@@ -54,77 +54,79 @@ export default class OrderItem extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import '@/assets/styles/utils/vars.scss';
-  .product {
-    margin-bottom: $offset * 2;
-    @media (max-width: 620px) {
-      width: 100%;
-      max-width: 31.25rem;
-    }
-    &__rate {
-      font-size: .875rem;
-      margin-left: $offset / 2;
-      &-wrap {
-        margin-bottom: $offset;
-        display: flex;
-        align-items: center;
-      }
-    }
-    &__inner {
-      padding: $offset;
-      border: 1px solid $lightGray;
-    }
-    &__info {
-       @media (max-width: 620px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-      }
-    }
-    &__img-wrap, &__title {
-      cursor: pointer;
-      margin-bottom: $offset / 2;
-    }
-    &__title {
-      height: 35px;
-      overflow: hidden;
-      @include transition;
-      &:hover {
-        color: $baseGreen;
-      }
+  .order-wrap {
+    .product {
+      margin-bottom: $offset * 2;
       @media (max-width: 620px) {
-        text-align: center;
-      }
-    }
-    &__price {
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-bottom: $offset;
-    }
-    &__img {
-      &-wrap {
         width: 100%;
-        height: 14rem;
-        max-width: 14rem;
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 31.25rem;
+      }
+      &__rate {
+        font-size: .875rem;
+        margin-left: $offset / 2;
+        &-wrap {
+          margin-bottom: $offset;
+          display: flex;
+          align-items: center;
+        }
+      }
+      &__inner {
+        padding: $offset;
+        border: 1px solid $lightGray;
+      }
+      &__info {
+        @media (max-width: 620px) {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+      &__img-wrap, &__title {
+        cursor: pointer;
+        margin-bottom: $offset / 2;
+      }
+      &__title {
+        height: 35px;
         overflow: hidden;
         @include transition;
         &:hover {
-            transform: scale(.95)
+          color: $baseGreen;
+        }
+        @media (max-width: 620px) {
+          text-align: center;
         }
       }
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, - 50%);
-      object-fit: contain;
+      &__price {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: $offset;
+      }
+      &__img {
+        &-wrap {
+          width: 100%;
+          height: 14rem;
+          max-width: 14rem;
+          position: relative;
+          margin-left: auto;
+          margin-right: auto;
+          overflow: hidden;
+          @include transition;
+          &:hover {
+            transform: scale(.95)
+          }
+        }
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, - 50%);
+        object-fit: contain;
+      }
     }
   }
 </style>

@@ -8,5 +8,7 @@
     "purchase": "Purchase",
     "emptyCart": "No products in cart...",
     "addedToCart": "Product added to cart",
-    "deleteCart": "Deleted from cart"
+    "deleteCart": "Deleted from cart",
+    "orders": "Orders",
+    "availableAmount": "Available amount"
 }

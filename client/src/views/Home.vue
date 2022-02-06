@@ -46,7 +46,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import Products from "@/components/products/ProductsList.vue";
 import productsModule from "@/store/modules/products";
-import ProductInterface from "@/interfaces/products";
+import ProductInterface from "@/interfaces/product";
 import CatalogVeiwItem from "@/interfaces/catalogVeiwItem";
 import FullWidthIcon from "@/components/icons/grid/FullWidth.vue";
 import GridIcon from "@/components/icons/grid/Grid.vue";
@@ -92,7 +92,9 @@ export default class Catalog extends Vue {
      this.checkCatalogItemView()
     });
     try {
-      await this.fetchProducts();
+      if (!this.products.length) {
+        await this.fetchProducts();
+      }
       this.isLoading = false;
     } catch (e) {
       console.log(e);

@@ -1,7 +1,7 @@
-const flowersMock = require('../mocks/flowers.mock')
+const Flower = require('../database/models/flower.model')
 
 function geFlowerById(id) {
-    return  flowersMock.find(flower => flower.id === +id)
+    return Flower.findByPk(Number(id))
 }
 
 module.exports = {

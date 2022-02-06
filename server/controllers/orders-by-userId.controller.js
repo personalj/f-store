@@ -1,11 +1,11 @@
-const { getOrdersByUserId } = require('../services/user.services')
+const { getOrdersByUserId } = require('../services/historyOrders.services')
 
-function ordersByUserIdController(req , res) {
-    const user_id = req.header('user_id')
+async function ordersByUserIdController(req , res) {
+    const user_id = Number(req.header('user_id'))
 
-    res.json(
-        getOrdersByUserId(+user_id)
-    )
+    const result = await getOrdersByUserId(user_id)
+
+    res.json(result)
 }
 
 module.exports = ordersByUserIdController

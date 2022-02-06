@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { PORT } = require('../config')
 const cors = require('cors')
+require('dotenv').config()
+
 const FlowersListController = require('./controllers/flower-list.controller')
 const FlowerByIdController = require('./controllers/flower-by-id.controller')
 const OrdersByUserIdController = require('./controllers/orders-by-userId.controller')
@@ -10,8 +12,8 @@ const OrdersController = require('./controllers/orders.controller')
 const app = express()
 
 app.use(bodyParser.json())
-
 app.use(bodyParser.urlencoded({extended: true}))
+
 
 app.use(cors())
 
