@@ -19,21 +19,18 @@ import { http } from "@/services/http";
   store,
 })
 class CartModule extends VuexModule {
-  cartList: ProductInterface[] =
-  localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart") || '') : [];
+  cartList: ProductInterface[] = [];
   orderError: CartOrderErrorInterface[] = [];
 
   @Mutation
   setToCart(product: ProductInterface): void {
     const itemfound =this.cartList.find(el => el.id === product.id)
     itemfound && itemfound.quantity && product.quantity ? itemfound.quantity += product.quantity : this.cartList.unshift(product)
-    localStorage.setItem("cart", JSON.stringify(this.cartList) || "");
   }
 
   @Mutation
   deleteFromCart(index: number): void {
     this.cartList.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(this.cartList) || "");
   }
 
   @Mutation
@@ -42,7 +39,6 @@ class CartModule extends VuexModule {
     if (item.quantity) {
       item.quantity++
     }
-    localStorage.setItem("cart", JSON.stringify(this.cartList) || "");
   }
 
   @Mutation
@@ -51,13 +47,11 @@ class CartModule extends VuexModule {
     if (item.quantity && item.quantity > 1) {
       item.quantity--
     }
-    localStorage.setItem("cart", JSON.stringify(this.cartList) || "");
   }
 
   @Mutation
   clearCart(): void {
     this.cartList = [];
-    localStorage.removeItem("cart");
   }
 
   @Mutation

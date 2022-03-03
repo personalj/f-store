@@ -22,11 +22,6 @@ const Flower = sequelize.define('Flower', {
         allowNull: false,
         field: 'price'
     },
-    color_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'color_id'
-    },
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -42,10 +37,16 @@ const Flower = sequelize.define('Flower', {
         allowNull: false,
         field: 'image'
     },
+    color_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'color_id'
+    },
 }, {
     schema: 'flowers_store',
     tableName: 'flowers',
     timestamps: false
 })
+
 
 module.exports = Flower

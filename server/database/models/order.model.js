@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../index')
 
+const Flower = require('./flower.model')
+
 const Order = sequelize.define('Order', {
     id: {
         type: DataTypes.INTEGER,
@@ -12,11 +14,6 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         field: 'quantity'
     },
-    flower_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'flower_id'
-    },
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -27,10 +24,18 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         field: 'date'
     },
+    flower_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'flower_id'
+    },
 }, {
     schema: 'flowers_store',
     tableName: 'orders',
     timestamps: false
 })
+
+Flower.hasMany(Order,  { foreignKey: 'flower_id' })
+Order.belongsTo(Flower, { foreignKey: 'flower_id' })
 
 module.exports = Order

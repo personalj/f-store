@@ -4,26 +4,26 @@
       <div class="product__inner">
         <div class="product__img-wrap">
           <img
-            v-if="order.image"
-            :src="order.image"
+            v-if="order.Flower.image"
+            :src="order.Flower.image"
             alt="product image"
             class="product__img"
-            @click="getProduct(order.id)"
+            @click="getProduct(order.Flower.id)"
           />
         </div>
         <div class="product__info">
           <div class="product__info-item">
-            <div class="product__title" @click="getProduct(order.id)">
-              {{ order.title || '' }}
+            <div class="product__title" @click="getProduct(order.Flower.id)">
+              {{ order.Flower.title || '' }}
             </div>
           </div>
           <div class="product__price">
-            {{ order.price }} USD
+            {{ order.Flower.price }} USD
           </div>
           <div class="product__rate-wrap">
             <div class="product__rate-stars">
               <star-rating
-                v-model="order.rate"
+                v-model="order.Flower.rate"
                 :read-only=true
                 :increment=0.1
                 :star-size=18
@@ -31,7 +31,7 @@
               />
             </div>
             <div class="product__rate">
-              {{ order.rate }}
+              {{ order.Flower.rate }}
             </div>
           </div>
         </div>
